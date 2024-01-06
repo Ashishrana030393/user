@@ -2,6 +2,7 @@ package com.as.users.controller;
 
 import com.as.users.entity.User;
 import com.as.users.service.UserService;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
@@ -23,5 +24,11 @@ public class UserController {
     @GetMapping
     Optional<User> findUserById(@RequestParam("id") Long id){
         return this.userService.findUserById(id);
+    }
+
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @DeleteMapping
+    void deleteAll(){
+        this.userService.deleteAllUser();
     }
 }
