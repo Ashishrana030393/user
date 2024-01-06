@@ -3,10 +3,11 @@
 - redis/redis-stack-server provides Redis Stack but excludes RedisInsight. This container is best for production deployment.
 
 docker pull redis/redis-stack:latest
-docker run -d --name redis-stack -p 6379:6379 -p 8001:8001 -e REDIS_ARGS="--requirepass mypassword" redis/redis-stack:latest
+docker run -d --name redis-stack --network db-network -p 6379:6379 -p 8001:8001 -e REDIS_ARGS="--requirepass mypassword" -v ${PWD}/redis-data:/data redis/redis-stack:latest 
 
 docker exec -it redis-stack redis-cli
 
+docker run -it  --rm -p 3306:3306 -e MYSQL_ROOT_PASSWORD=password -e MYSQL_DATABASE=projectdb -v ${PWD}/db:/var/lib/mysql --net db-network --name db mysql:8
 
 
 Spring Boot Redis Cache
