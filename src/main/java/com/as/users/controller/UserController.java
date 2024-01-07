@@ -1,8 +1,12 @@
 package com.as.users.controller;
 
 import com.as.users.entity.User;
+import com.as.users.mapper.UserMapper;
+import com.as.users.request.UserRm;
 import com.as.users.service.UserService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
@@ -16,9 +20,10 @@ public class UserController {
         this.userService = userService;
     }
 
-    @PostMapping
+    @PostMapping(consumes = {MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE})
     @ResponseStatus(HttpStatus.CREATED)
-    User save(@RequestBody User user){
+    User save(@RequestBody @Valid UserRm request){
+        User user = UserMapper.INSTANCE.toUser(request);
         return this.userService.save(user);
     }
 

@@ -85,3 +85,28 @@ spring.cache.type=redis
 spring.cache.cache-names=articleCache,allArticlesCache
 
 The caches articleCache and allArticlesCache will be alive for 10 minutes.
+
+
+The Swagger UI page will then be available at http://server:port/context-path/swagger-ui.html and the OpenAPI description will be available at the following url for json format: http://server:port/context-path/v3/api-docs
+
+server: The server name or IP
+
+port: The server port
+
+context-path: The context path of the application
+
+Documentation can be available in yaml format as well, on the following path : /v3/api-docs.yaml
+
+
+**Webflux support for spring api doc**
+<dependency>
+<groupId>org.springdoc</groupId>
+<artifactId>springdoc-openapi-starter-webflux-ui</artifactId>
+<version>2.3.0</version>
+</dependency>
+**Spring WEB MVC support**
+<dependency>
+<groupId>org.springdoc</groupId>
+<artifactId>springdoc-openapi-starter-webmvc-api</artifactId>
+<version>2.3.0</version>
+</dependency>
