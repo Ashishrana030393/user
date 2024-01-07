@@ -11,6 +11,7 @@ import java.io.Serializable;
 public class User extends BaseId implements Serializable {
     @Column(unique = true)
     private String username;
+    private String email;
 
     public String getUsername() {
         return username;
@@ -18,5 +19,13 @@ public class User extends BaseId implements Serializable {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

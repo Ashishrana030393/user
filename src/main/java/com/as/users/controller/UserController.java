@@ -17,6 +17,7 @@ public class UserController {
     }
 
     @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
     User save(@RequestBody User user){
         return this.userService.save(user);
     }
@@ -30,5 +31,11 @@ public class UserController {
     @DeleteMapping
     void deleteAll(){
         this.userService.deleteAllUser();
+    }
+
+    @PutMapping
+    @ResponseStatus(HttpStatus.OK)
+    User updateUser(@RequestBody User user){
+        return this.userService.updateUser(user);
     }
 }

@@ -10,4 +10,6 @@ public interface UserService {
     Optional<User> findUserById(Long id);
 
     void deleteAllUser();
+
+    User updateUser(User userDto);
 }

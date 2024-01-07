@@ -2,6 +2,7 @@ package com.as.users.service;
 
 import com.as.users.UserRepository;
 import com.as.users.entity.User;
+import com.as.users.exception.UserNotFound;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -31,4 +32,13 @@ public class UserServiceImpl implements UserService{
     }
 
 
+    @Override
+    public User updateUser(User userDto){
+        Optional<User> byId = this.userRepository.findById(userDto.getId());
+        return byId.map(u-> {
+            u.setUsername(userDto.getUsername());
+            u.setEmail(userDto.getEmail());
+            return this.userRepository.save(u);
+        }).orElseThrow(()->new UserNotFound("invalid user", "id is " + userDto.getId(),null));
+    }
 }
